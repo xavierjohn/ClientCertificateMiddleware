@@ -29,8 +29,8 @@ namespace ClientCertificateMiddlewareDemo
                     options.UseHttps(httpsOptions);
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseUrls("https://*:4430")
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
