@@ -43,19 +43,17 @@ Export-PfxCertificate -Cert $certAdmin -FilePath "\temp\admin.mylocalmachine.pfx
 On Dev machine, you have to install the certificate to Current User -> Trusted Root Certification Authorities
 Otherwise you will see the exception "The remote certificate is invalid according to the validation procedure."
 
-###Azure
+## Azure
 
-###Import the SSL into Azure. 
+### Import the SSL into Azure. 
 Go to your Azure Web application
->> SSL Certificates  
->>>> Upload Certificate.
->>>> Note the Thumbprint
+> SSL Certificates  
+>> Upload Certificate.
+>> Note the Thumbprint
 
->> Application Setting
->>>> Add WEBSITE_LOAD_CERTIFICATES and the Thumbprint
->>>> Add ASPNETCORE_ENVIRONMENT  and setting like 'Staging'
-
-
+> Application Setting
+>> Add WEBSITE_LOAD_CERTIFICATES and the Thumbprint
+>> Add ASPNETCORE_ENVIRONMENT  and setting like 'Staging'
 
 
 To get the certificates to work, don't run the demo under IIS Express. Instead run under the app 'ClientCertificateMiddlewareDemo'
@@ -74,5 +72,3 @@ UseKestrel(options =>
         options.UseHttps(httpsOptions);
     }
 ```
-### Future development
-Future development would be to create a Claims Principal and add the roles from the configuration. This will allow restricting API based on different certificates.

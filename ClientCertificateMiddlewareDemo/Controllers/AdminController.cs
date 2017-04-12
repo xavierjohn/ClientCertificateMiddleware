@@ -8,21 +8,21 @@ using Microsoft.AspNetCore.Authorization;
 namespace ClientCertificateMiddlewareDemo.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "CanAccessAdminMethods")]
     public class AdminController : Controller
     {
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "admin1", "admin2" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return "admin";
         }
 
         // POST api/values

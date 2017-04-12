@@ -39,6 +39,12 @@ namespace ClientCertificateMiddlewareDemo
             });
             // Add framework services.
             services.AddMvc();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CanAccessAdminMethods", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("CanAccessUserMethods",  policy => policy.RequireRole("User"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

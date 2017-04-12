@@ -44,7 +44,7 @@ namespace ClientCertificateMiddlewareDemo
             certStore.Open(OpenFlags.ReadOnly);
             var certCollection = certStore.Certificates.Find(
                                        X509FindType.FindBySubjectDistinguishedName, subjectName, true);
-            // Get the first cert with the thumbprint
+            // Get the first certificate
             X509Certificate2 certificate = null;
             if (certCollection.Count > 0)
             {
