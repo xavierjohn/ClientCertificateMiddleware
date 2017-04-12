@@ -30,10 +30,10 @@ namespace ClientCertificateMiddlewareDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var certificateAndRoles = new List<AuthorizedCertficatesAndRoles.CertificateAndRoles>();
+            var certificateAndRoles = new List<CertficateAuthenticationOptions.CertificateAndRoles>();
             Configuration.GetSection("AuthorizedCertficatesAndRoles:CertificateAndRoles").Bind(certificateAndRoles);
 
-            services.Configure<AuthorizedCertficatesAndRoles>(x =>
+            services.Configure<CertficateAuthenticationOptions>(x =>
             {
                 x.CertificatesAndRoles = certificateAndRoles.ToArray();
             });

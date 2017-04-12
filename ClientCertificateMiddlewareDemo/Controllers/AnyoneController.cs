@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ClientCertificateMiddlewareDemo.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class AnyoneController : Controller
     {
         // GET api/values
         [HttpGet]
