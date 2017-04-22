@@ -13,29 +13,28 @@ namespace ClientCertificateMiddleware
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             var certificate = Context.Connection.ClientCertificate;
-            if (certificate == null)
+            if (certificate != null && certificate.Verify())
             {
-                return Task.FromResult(AuthenticateResult.Skip());
-            }
-            var roles = IfValidCertificateGetRoles(certificate);
-            if (roles?.Length > 0)
-            {
-                var claims = new List<Claim>();
-                foreach (var role in roles)
+                var roles = GetRolesFromFirstMatchingCertificate(certificate);
+                if (roles?.Length > 0)
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, role));
-                }
+                    var claims = new List<Claim>();
+                    foreach (var role in roles)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, role));
+                    }
 
-                var userIdentity = new ClaimsIdentity(claims, Options.AuthenticationScheme);
-                var userPrincipal = new ClaimsPrincipal(userIdentity);
-                var ticket = new AuthenticationTicket(userPrincipal, new AuthenticationProperties(), Options.AuthenticationScheme);
-                return Task.FromResult(AuthenticateResult.Success(ticket));
+                    var userIdentity = new ClaimsIdentity(claims, Options.AuthenticationScheme);
+                    var userPrincipal = new ClaimsPrincipal(userIdentity);
+                    var ticket = new AuthenticationTicket(userPrincipal, new AuthenticationProperties(), Options.AuthenticationScheme);
+                    return Task.FromResult(AuthenticateResult.Success(ticket));
+                }
             }
 
-            return Task.FromResult(AuthenticateResult.Fail("Unauthorized certificate"));
+            return Task.FromResult(AuthenticateResult.Skip());
         }
 
-        private string[] IfValidCertificateGetRoles(X509Certificate2 certificate)
+        private string[] GetRolesFromFirstMatchingCertificate(X509Certificate2 certificate)
         {
             var roles = (Options.CertificatesAndRoles
                 .Where(r => r.Issuer == certificate.Issuer && r.Subject == certificate.Subject)
