@@ -4,11 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Principal;
 using Microsoft.AspNetCore.Authentication;
 using System.Text.Encodings.Web;
 
@@ -16,8 +11,6 @@ namespace ClientCertificateMiddleware
 {
     public class ClientCertificateMiddleware : AuthenticationMiddleware<CertficateAuthenticationOptions>
     {
-        //        private readonly CertficateAuthenticationOptions _authorizedCertficatesAndRoles;
-
         public ClientCertificateMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, UrlEncoder encoder, IOptions<CertficateAuthenticationOptions> options)
             : base(next, options, loggerFactory, encoder)
         {
@@ -27,7 +20,6 @@ namespace ClientCertificateMiddleware
                 throw new ArgumentNullException(nameof(loggerFactory));
             if (encoder == null)
                 throw new ArgumentNullException(nameof(encoder));
-
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
         }

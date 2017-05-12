@@ -13,7 +13,11 @@ namespace ClientCertificateMiddleware
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             var certificate = Context.Connection.ClientCertificate;
+#if NET451
             if (certificate != null && certificate.Verify())
+#else
+            if (certificate != null)
+#endif
             {
                 var roles = GetRolesFromFirstMatchingCertificate(certificate);
                 if (roles?.Length > 0)
