@@ -7,7 +7,7 @@ using System;
 using Microsoft.AspNetCore.Authentication;
 using System.Text.Encodings.Web;
 
-namespace ClientCertificateMiddleware
+namespace CWiz.ClientCertificateMiddleware
 {
     public class ClientCertificateMiddleware : AuthenticationMiddleware<CertficateAuthenticationOptions>
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientCertificateMiddleware
+namespace CWiz.ClientCertificateMiddleware
 {
     public class CertficateAuthenticationOptions : AuthenticationOptions
     {
