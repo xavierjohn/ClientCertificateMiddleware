@@ -1,6 +1,15 @@
 # ClientCertificateMiddleware
 Asp.net core Client Certificate Middleware
-
+The package is multi-targeted for net451 and netstandard1.3.
+IMPORTANT: .Net Standard 1.3 does not have support to verify the certificate chain so don't use it in the production environment. 
+Note this code that only calls Verify in NET451.
+```sh
+#if NET451
+            if (certificate != null && certificate.Verify())
+#else
+            if (certificate != null)
+#endif
+```
 The Client Certificate Middleware will authorize a request based on the configured AuthorizedCertficatesAndRoles
 
 Example:
