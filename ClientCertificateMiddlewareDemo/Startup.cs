@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CWiz.ClientCertificateMiddleware;
+using System;
 
 namespace ClientCertificateMiddlewareDemo
 {
@@ -22,23 +23,28 @@ namespace ClientCertificateMiddlewareDemo
 
         public IConfigurationRoot Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var certificateAndRoles = new List<CertficateAuthenticationOptions.CertificateAndRoles>();
-            Configuration.GetSection("AuthorizedCertficatesAndRoles:CertificateAndRoles").Bind(certificateAndRoles);
-
-            services.Configure<CertficateAuthenticationOptions>(x =>
-            {
-                x.CertificatesAndRoles = certificateAndRoles.ToArray();
-            });
             // Add framework services.
             services.AddMvc();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CertificateAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CertificateAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCertificateAuthentication(certOptions =>
+            {
+                var certificateAndRoles = new List<CertficateAuthenticationOptions.CertificateAndRoles>();
+                Configuration.GetSection("AuthorizedCertficatesAndRoles:CertificateAndRoles").Bind(certificateAndRoles);
+                certOptions.CertificatesAndRoles = certificateAndRoles.ToArray();
+            });
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("CanAccessAdminMethods", policy => policy.RequireRole("Admin"));
-                options.AddPolicy("CanAccessUserMethods",  policy => policy.RequireRole("User"));
+                options.AddPolicy("CanAccessUserMethods", policy => policy.RequireRole("User"));
             });
         }
 
@@ -47,8 +53,8 @@ namespace ClientCertificateMiddlewareDemo
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseAuthentication();
 
-            app.UseClientCertificateMiddleware();
             app.UseMvc();
         }
     }

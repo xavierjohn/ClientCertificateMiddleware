@@ -1,20 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authentication;
 
 namespace CWiz.ClientCertificateMiddleware
 {
-    public class CertficateAuthenticationOptions : AuthenticationOptions
+    public class CertficateAuthenticationOptions : AuthenticationSchemeOptions
     {
-        public CertficateAuthenticationOptions()
-        {
-            AuthenticationScheme = "Certificate";
-            AutomaticAuthenticate = true;
-            AutomaticChallenge = true;
-        }
+        /// <summary>
+        /// Gets or sets the challenge to put in the "WWW-Authenticate" header.
+        /// </summary>
+        public string Challenge { get; set; } = CertificateAuthenticationDefaults.AuthenticationScheme;
 
         public CertificateAndRoles[] CertificatesAndRoles { get; set; }
 

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
-using Microsoft.Extensions.Logging;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System;
 using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClientCertificateMiddlewareDemo
 {
@@ -14,27 +14,27 @@ namespace ClientCertificateMiddlewareDemo
         public static void Main(string[] args)
         {
 
-            var whb = new WebHostBuilder();
+            var whb = WebHost.CreateDefaultBuilder(args);
 
             var environment = whb.GetSetting("environment");
             var subjectName = GetCertificateSubjectNameBasedOnEnvironment(environment);
             var certificate = GetServiceCertificate(subjectName);
 
-            var host = whb.UseKestrel(options =>
+            var host = whb.UseStartup<Startup>()
+                .UseKestrel(options =>
                 {
-                    var httpsOptions = new HttpsConnectionFilterOptions();
-                    httpsOptions.ServerCertificate = certificate;
-                    httpsOptions.ClientCertificateMode = ClientCertificateMode.AllowCertificate;
-                    httpsOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls;
-                    options.UseHttps(httpsOptions);
+                    options.Listen(new IPEndPoint(IPAddress.Loopback, 4430), listenOptions =>
+                    {
+                        var httpsConnectionAdapterOptions = new HttpsConnectionAdapterOptions()
+                        {
+                            ClientCertificateMode = ClientCertificateMode.AllowCertificate,
+                            SslProtocols = System.Security.Authentication.SslProtocols.Tls,
+                            ServerCertificate = certificate
+                        };
+                        listenOptions.UseHttps(httpsConnectionAdapterOptions);
+                    });
                 })
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("https://*:4430")
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
-
             host.Run();
         }
 
