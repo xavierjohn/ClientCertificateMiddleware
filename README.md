@@ -1,15 +1,7 @@
 # ClientCertificateMiddleware
 Asp.net core Client Certificate Middleware
-The package is multi-targeted for net451 and netstandard1.3.
-IMPORTANT: .Net Standard 1.3 does not have support to verify the certificate chain so don't use it in the production environment. 
-Note this code that only calls Verify in NET451.
-```sh
-#if NET451
-            if (certificate != null && certificate.Verify())
-#else
-            if (certificate != null)
-#endif
-```
+The package is targets netstandard2.0.
+
 The Client Certificate Middleware will authorize a request based on the configured AuthorizedCertficatesAndRoles
 
 Example:
@@ -72,12 +64,17 @@ http://www.blinkingcaret.com/2017/03/01/https-asp-net-core/
 
 Here is the code that sets up the use of client certificate
 ```sh
-UseKestrel(options =>
+.UseKestrel(options =>
+{
+    options.Listen(new IPEndPoint(IPAddress.Loopback, 4430), listenOptions =>
     {
-        var httpsOptions = new HttpsConnectionFilterOptions();
-        httpsOptions.ServerCertificate = certificate;
-        httpsOptions.ClientCertificateMode = ClientCertificateMode.AllowCertificate;
-        httpsOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls;
-        options.UseHttps(httpsOptions);
-    }
+        var httpsConnectionAdapterOptions = new HttpsConnectionAdapterOptions()
+        {
+            ClientCertificateMode = ClientCertificateMode.AllowCertificate,
+            SslProtocols = System.Security.Authentication.SslProtocols.Tls,
+            ServerCertificate = certificate
+        };
+        listenOptions.UseHttps(httpsConnectionAdapterOptions);
+    });
+})
 ```

@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificateMiddlewareDemo", "ClientCertificateMiddlewareDemo\ClientCertificateMiddlewareDemo.csproj", "{125815E9-7A68-4F9D-9F0A-5891C6707436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCertificateMiddlewareDemo", "ClientCertificateMiddlewareDemo\ClientCertificateMiddlewareDemo.csproj", "{125815E9-7A68-4F9D-9F0A-5891C6707436}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificateMiddleware", "ClientCertificateMiddleware\ClientCertificateMiddleware.csproj", "{4A3ADE26-00AC-4610-BC8D-F003C6410307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCertificateMiddleware", "ClientCertificateMiddleware\ClientCertificateMiddleware.csproj", "{4A3ADE26-00AC-4610-BC8D-F003C6410307}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8BBE2B1-8B75-46C7-A9B3-0E7E21826BD2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A200B8D7-401C-4CE1-9995-31EAB137A6D4}
 	EndGlobalSection
 EndGlobal
