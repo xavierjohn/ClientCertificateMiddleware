@@ -5,10 +5,11 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCertificateMiddlewareDemo", "ClientCertificateMiddlewareDemo\ClientCertificateMiddlewareDemo.csproj", "{125815E9-7A68-4F9D-9F0A-5891C6707436}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCertificateMiddleware", "ClientCertificateMiddleware\ClientCertificateMiddleware.csproj", "{4A3ADE26-00AC-4610-BC8D-F003C6410307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CWiz.ClientCertificateMiddleware", "CWiz.ClientCertificateMiddleware\CWiz.ClientCertificateMiddleware.csproj", "{4A3ADE26-00AC-4610-BC8D-F003C6410307}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8BBE2B1-8B75-46C7-A9B3-0E7E21826BD2}"
 	ProjectSection(SolutionItems) = preProject
+		project.props = project.props
 		README.md = README.md
 	EndProjectSection
 EndProject
