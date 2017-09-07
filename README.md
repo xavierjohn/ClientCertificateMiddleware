@@ -1,7 +1,4 @@
-# ClientCertificateMiddleware
-Asp.net core Client Certificate Middleware
-The package is targets netstandard2.0.
-
+# Client Certificate Authorization Middleware for ASP.NET Core
 The Client Certificate Middleware will authorize a request based on the configured AuthorizedCertficatesAndRoles
 
 Example:
@@ -9,14 +6,14 @@ Example:
   "AuthorizedCertficatesAndRoles": {
     "CertificateAndRoles": [
       {
-        "Subject": "CN=localhost",
-        "Issuer": "CN=localhost",
+        "Subject": "CN=http://user.mylocalmachine",
+        "Issuer": "CN=http://user.mylocalmachine",
         "Roles": [ "User" ]
       },
       {
-        "Subject": "CN=Store",
-        "Issuer": "Me",
-        "Roles": [ "User" ]
+        "Subject": "CN=http://admin.mylocalmachine",
+        "Issuer": "CN=http://admin.mylocalmachine",
+        "Roles": [ "Admin" ]
       }
     ]
   }
