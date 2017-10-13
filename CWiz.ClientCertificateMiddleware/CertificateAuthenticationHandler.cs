@@ -17,7 +17,7 @@ namespace CWiz.ClientCertificateMiddleware
             : base(options, logger, encoder, clock)
         { }
 
-        protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+        protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             var certificate = Context.Connection.ClientCertificate;
             if (certificate != null && certificate.Verify())
@@ -34,11 +34,11 @@ namespace CWiz.ClientCertificateMiddleware
                     var userIdentity = new ClaimsIdentity(claims, Options.Challenge);
                     var userPrincipal = new ClaimsPrincipal(userIdentity);
                     var ticket = new AuthenticationTicket(userPrincipal, new AuthenticationProperties(), Options.Challenge);
-                    return AuthenticateResult.Success(ticket);
+                    return Task.FromResult(AuthenticateResult.Success(ticket));
                 }
             }
 
-            return AuthenticateResult.NoResult();
+            return Task.FromResult(AuthenticateResult.NoResult());
         }
 
         private string[] GetRolesFromFirstMatchingCertificate(X509Certificate2 certificate)
