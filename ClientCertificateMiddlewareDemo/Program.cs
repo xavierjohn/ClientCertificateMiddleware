@@ -13,7 +13,6 @@ namespace ClientCertificateMiddlewareDemo
     {
         public static void Main(string[] args)
         {
-
             var whb = WebHost.CreateDefaultBuilder(args);
 
             var environment = whb.GetSetting("environment");
@@ -40,18 +39,19 @@ namespace ClientCertificateMiddlewareDemo
 
         private static X509Certificate2 GetServiceCertificate(string subjectName)
         {
-            var certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-            certStore.Open(OpenFlags.ReadOnly);
-            var certCollection = certStore.Certificates.Find(
-                                       X509FindType.FindBySubjectDistinguishedName, subjectName, true);
-            // Get the first certificate
-            X509Certificate2 certificate = null;
-            if (certCollection.Count > 0)
+            using (var certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser))
             {
-                certificate = certCollection[0];
+                certStore.Open(OpenFlags.ReadOnly);
+                var certCollection = certStore.Certificates.Find(
+                                           X509FindType.FindBySubjectDistinguishedName, subjectName, true);
+                // Get the first certificate
+                X509Certificate2 certificate = null;
+                if (certCollection.Count > 0)
+                {
+                    certificate = certCollection[0];
+                }
+                return certificate;
             }
-            certStore.Close();
-            return certificate;
         }
 
         private static string GetCertificateSubjectNameBasedOnEnvironment(string environment)
