@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/CWiz.ClientCertificateMiddleware.svg)](https://www.nuget.org/packages/CWiz.ClientCertificateMiddleware)
+
 # Client Certificate Authorization Middleware for ASP.NET Core
 The Client Certificate Middleware will authorize a request based on the configured AuthorizedCertficatesAndRoles
 
