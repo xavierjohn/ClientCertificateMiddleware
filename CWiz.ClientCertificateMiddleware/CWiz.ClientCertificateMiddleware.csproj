@@ -4,7 +4,7 @@
     <Company>Xavier John</Company>
     <Authors>$(Company)</Authors>
     <Description>Client Certificate Middleware for .net core.</Description>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Product>Client Certificate Middleware</Product>
     <Title>$(Product)</Title>
@@ -24,8 +24,8 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove(project.props))" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Configuration;
-using System.IO;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ClientCertificateMiddlewareDemo
 {
