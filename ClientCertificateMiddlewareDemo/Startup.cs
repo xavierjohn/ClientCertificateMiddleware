@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using CWiz.ClientCertificateMiddleware;
-using System;
+﻿// <copyright file="Startup.cs" company="CWiz Software">
+// Copyright (c) CWiz Software. All rights reserved.
+// </copyright>
 
 namespace ClientCertificateMiddlewareDemo
 {
+    using System;
+    using System.Collections.Generic;
+    using CWiz.ClientCertificateRoleBasedAccessControlMiddlewarej;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -22,7 +26,6 @@ namespace ClientCertificateMiddlewareDemo
         }
 
         public IConfigurationRoot Configuration { get; }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

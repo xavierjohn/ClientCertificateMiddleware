@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCertificateMiddlewareDemo", "ClientCertificateMiddlewareDemo\ClientCertificateMiddlewareDemo.csproj", "{125815E9-7A68-4F9D-9F0A-5891C6707436}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8BBE2B1-8B75-46C7-A9B3-0E7E21826BD2}"
+	ProjectSection(SolutionItems) = preProject
+		project.props = project.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientCertificateRoleBasedAccessControlMiddleware", "ClientCertificateRoleBasedAccessControlMiddleware", "{B1A6084E-014D-4B26-A657-D7C803BBB324}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCertificateRoleBasedAccessControlMiddleware", "ClientCertificateRoleBasedAccessControlMiddleware\src\ClientCertificateRoleBasedAccessControlMiddleware.csproj", "{68D6F5C8-D738-4155-816E-A3F73A0927FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{125815E9-7A68-4F9D-9F0A-5891C6707436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125815E9-7A68-4F9D-9F0A-5891C6707436}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{125815E9-7A68-4F9D-9F0A-5891C6707436}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125815E9-7A68-4F9D-9F0A-5891C6707436}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68D6F5C8-D738-4155-816E-A3F73A0927FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68D6F5C8-D738-4155-816E-A3F73A0927FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68D6F5C8-D738-4155-816E-A3F73A0927FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68D6F5C8-D738-4155-816E-A3F73A0927FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68D6F5C8-D738-4155-816E-A3F73A0927FA} = {B1A6084E-014D-4B26-A657-D7C803BBB324}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A200B8D7-401C-4CE1-9995-31EAB137A6D4}
+	EndGlobalSection
+EndGlobal
